@@ -2,10 +2,43 @@
 ## [Unreleased]
 
 
-<a name="v0.3.1"></a>
-## [v0.3.1] - 2021-02-10
+<a name="v0.3.2"></a>
+## [v0.3.2] - 2021-03-17
+### Chore
+- [f8b2a92](https://github.com/quay/claircore/commit/f8b2a928bacdaaf64fb4986b0a7f9ff0a3a5dc2d): v0.1.24 changelog bump
+- [bfb37f0](https://github.com/quay/claircore/commit/bfb37f01c616db804aab3f6a361404a69a79ce28): update comments in distribution scanners
+- [e5743e3](https://github.com/quay/claircore/commit/e5743e3fd13268bda568de194d9f04d32c12b9f3): v0.3.1 changelog bump
+### Chore: Release Quay.Io/Claircore/Golang
+- [d3ac00e](https://github.com/quay/claircore/commit/d3ac00e1808c61f47a8505de4931b694c54e5b7a): 1.16
+### Cicd
+- [eae2b15](https://github.com/quay/claircore/commit/eae2b158422d7f53bce9a43a3a6e83f106ef2092): bump out go1.14 and bump in go1.16
+- [d9f28c4](https://github.com/quay/claircore/commit/d9f28c4f839c4c95cd4b9b6ed3f4d1226c7bcea3): gh action echo branch
+- [6efb496](https://github.com/quay/claircore/commit/6efb496f0e8ddf9dc71857ab8ffd5b8753314a59): fix gh action script
+- [67fa955](https://github.com/quay/claircore/commit/67fa9554f929364f7c6d9fad47011d627efe5578): filter tags for stable branch releases
+### Fetcher
+- [a30c62d](https://github.com/quay/claircore/commit/a30c62d09f709577f550e6be195c79dc6034e62f): relax allowable gzip types
+ - Closes [#303](https://github.com/quay/claircore/issues/303)### Fix
+- [892ba0c](https://github.com/quay/claircore/commit/892ba0c1d25ee2f3975e2fd1a1f3de569b149f5c): comments and docs
+- [7b054c2](https://github.com/quay/claircore/commit/7b054c2ed9226ee428019db3816d1e1c8a7f6f90): provide a way for default and out-of-tree matchers
+### Indexer
+- [47b877a](https://github.com/quay/claircore/commit/47b877a291acb619f2fa7a7acc34e17e7f3af3af): regen indexer test data
 ### Libindex
+- [f49cea5](https://github.com/quay/claircore/commit/f49cea5d9de7eecdc7a260c274d39957788aff3c): remove annoying log
 - [2cf7d4a](https://github.com/quay/claircore/commit/2cf7d4ad5002677f3f8e0baf047d66acbe93ea47): limit MaxConns in controller pool to 1
+### Matcherfactory
+- [25dd763](https://github.com/quay/claircore/commit/25dd763a32d25df98036039ba8871c99bf8ea21b): fix typos in comments
+### Matchers
+- [14bc1d2](https://github.com/quay/claircore/commit/14bc1d2e61b383c9e945efc170188dbe5493bdb7): add factory pattern
+### Python
+- [2cef538](https://github.com/quay/claircore/commit/2cef538f9b607447c3d9d186576cae5b0e115f63): move to traditional mapping
+### Rhel
+- [5eba440](https://github.com/quay/claircore/commit/5eba4405925a56e073b10cf4959f9fca0788a666): fix cpe mapping type assertion
+### Vulnstore
+- [aa46c6b](https://github.com/quay/claircore/commit/aa46c6bd1535df5850c52c3b219c0f48c6822abd): update-diff optimize
+- [7856456](https://github.com/quay/claircore/commit/78564563897a3f1573987ae05fb6ecb6539abe57): chunked vuln cleanup
+### Reverts
+- chore: v0.1.24 changelog bump
+
 
 <a name="v0.3.0"></a>
 ## [v0.3.0] - 2021-02-05
@@ -663,8 +696,8 @@
 - Merge pull request [#3](https://github.com/quay/claircore/issues/3) from quay/documentation
 
 
-[Unreleased]: https://github.com/quay/claircore/compare/v0.3.1...HEAD
-[v0.3.1]: https://github.com/quay/claircore/compare/v0.3.0...v0.3.1
+[Unreleased]: https://github.com/quay/claircore/compare/v0.3.2...HEAD
+[v0.3.2]: https://github.com/quay/claircore/compare/v0.3.0...v0.3.2
 [v0.3.0]: https://github.com/quay/claircore/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/quay/claircore/compare/v0.1.20...v0.2.0
 [v0.1.20]: https://github.com/quay/claircore/compare/v0.1.19...v0.1.20
