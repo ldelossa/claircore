@@ -6,15 +6,14 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
-	"time"
 
 	"github.com/quay/zlog"
 
 	"github.com/quay/claircore"
 	"github.com/quay/claircore/internal/matcher"
-	"github.com/quay/claircore/internal/updater"
 	vulnstore "github.com/quay/claircore/internal/vulnstore/postgres"
 	"github.com/quay/claircore/libvuln/driver"
+	"github.com/quay/claircore/libvuln/updates"
 	"github.com/quay/claircore/test/integration"
 )
 
@@ -29,19 +28,15 @@ func TestMatcherIntegration(t *testing.T) {
 	store := vulnstore.NewVulnStore(pool)
 
 	m := &Matcher{}
-	// seed the test vulnstore with CVE data
-	ch := make(chan driver.Updater)
-	go func() {
-		ch <- NewUpdater(Buster)
-		close(ch)
-	}()
-	exec := updater.Online{Pool: pool}
+
+	mgr, err := updates.NewManager(ctx, store, pool, nil, updates.WithEnabled(
+		[]string{"debian"}))
+
 	// force update
-	tctx, cancel := context.WithTimeout(ctx, 2*time.Minute)
-	defer cancel()
-	if err := exec.Run(tctx, ch); err != nil {
-		t.Error(err)
+	if err := mgr.Run(ctx); err != nil {
+		t.Fatal(err)
 	}
+
 	path := filepath.Join("testdata", "indexreport-buster-jackson-databind.json")
 	f, err := os.Open(path)
 	if err != nil {

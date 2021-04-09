@@ -67,7 +67,7 @@ func driveUpdater(ctx context.Context, u driver.Updater, s vulnstore.Updater) er
 	var prevFP driver.Fingerprint
 	// Get previous fingerprint, if present.
 	// A fingerprint being missing is not an error.
-	opmap, err := s.GetUpdateOperations(ctx, name)
+	opmap, err := s.GetUpdateOperations(ctx, driver.VulnerabilityKind, name)
 	if err != nil {
 		return err
 	}

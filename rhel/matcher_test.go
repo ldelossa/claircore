@@ -12,9 +12,9 @@ import (
 
 	"github.com/quay/claircore"
 	"github.com/quay/claircore/internal/matcher"
-	"github.com/quay/claircore/internal/updater"
 	vulnstore "github.com/quay/claircore/internal/vulnstore/postgres"
 	"github.com/quay/claircore/libvuln/driver"
+	"github.com/quay/claircore/libvuln/updates"
 	"github.com/quay/claircore/test"
 	"github.com/quay/claircore/test/integration"
 )
@@ -30,23 +30,22 @@ func TestMatcherIntegration(t *testing.T) {
 		t.Error(err)
 	}
 
-	ch := make(chan driver.Updater)
-	go func() {
-		for _, f := range fs {
-			u, err := test.Updater(f)
-			if err != nil {
-				t.Error(err)
-				continue
-			}
-			ch <- u
+	u := []driver.Updater{}
+	for _, f := range fs {
+		up, err := test.Updater(f)
+		if err != nil {
+			t.Error(err)
+			continue
 		}
-		close(ch)
-	}()
-	exec := updater.Online{Pool: pool}
+		u = append(u, up)
+	}
+
+	mgr, err := updates.NewManager(ctx, store, pool, nil, updates.WithEnabled(
+		[]string{"rhel"}))
 
 	// force update
-	if err := exec.Run(ctx, ch); err != nil {
-		t.Error(err)
+	if err := mgr.Run(ctx); err != nil {
+		t.Fatal(err)
 	}
 
 	f, err := os.Open(filepath.Join("testdata", "rhel-report.json"))

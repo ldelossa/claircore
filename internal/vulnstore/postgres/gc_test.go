@@ -118,7 +118,7 @@ func TestGC(t *testing.T) {
 			}
 
 			// confirm update operations exist
-			ops, err := store.GetUpdateOperations(ctx)
+			ops, err := store.GetUpdateOperations(ctx, driver.VulnerabilityKind)
 			if err != nil {
 				t.Fatalf("failed obtaining update ops: %v", err)
 			}
@@ -139,7 +139,7 @@ func TestGC(t *testing.T) {
 			if tt.updateOps < tt.keep {
 				wantKeep = tt.updateOps
 			}
-			ops, err = store.GetUpdateOperations(ctx)
+			ops, err = store.GetUpdateOperations(ctx, driver.VulnerabilityKind)
 			if err != nil {
 				t.Fatalf("failed obtaining update ops: %v", err)
 			}

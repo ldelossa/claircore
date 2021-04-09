@@ -60,7 +60,7 @@ func OfflineImport(ctx context.Context, pool *pgxpool.Pool, in io.Reader) error 
 		return err
 	}
 
-	ops, err := s.GetUpdateOperations(ctx)
+	ops, err := s.GetUpdateOperations(ctx, driver.VulnerabilityKind)
 	if err != nil {
 		return err
 	}
